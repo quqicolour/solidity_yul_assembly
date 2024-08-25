@@ -1,52 +1,55 @@
 //SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0<0.8.20;
+pragma solidity >=0.8.0 <0.8.20;
 
-contract YUL_1{
-
+contract YUL_1 {
     //+
-    function yul_add(uint256 a) external returns(uint256){
-        uint256 b=1;
-        assembly{
-            let c:=3
+    function yul_add(uint256 a) external returns (uint256) {
+        uint256 b = 1;
+        assembly {
+            let c := 3
             b := add(a, c)
-            sstore(0,b)
+            sstore(0, b)
         }
         return b;
     }
-    
+
     //-,overflow=>0
-    function yul_sub(uint256 a, uint256 b)external returns(uint256){
+    function yul_sub(uint256 a, uint256 b) external returns (uint256) {
         uint256 d;
-        assembly{
-            let c:=5
-            d := sub(add(a,c),b)
-            sstore(0,d)
+        assembly {
+            let c := 5
+            d := sub(add(a, c), b)
+            sstore(0, d)
         }
         return d;
     }
 
     //*
-    function yul_mul(uint256 a, uint256 b)external returns(uint256){
+    function yul_mul(uint256 a, uint256 b) external returns (uint256) {
         uint256 c;
-        assembly{
-            c := mul(a,b)
-            sstore(0,c)
+        assembly {
+            c := mul(a, b)
+            sstore(0, c)
         }
         return c;
     }
 
     // /
-    function yul_div(uint256 a, uint256 b)external returns(uint256){
+    function yul_div(uint256 a, uint256 b) external returns (uint256) {
         uint256 c;
-        assembly{
-            c := div(a,b)
-            sstore(0,c)
+        assembly {
+            c := div(a, b)
+            sstore(0, c)
         }
         return c;
     }
 
     // 幂运算
-    function yul_exp(uint256 base, uint256 exponent) external pure returns (uint256) {
+    function yul_exp(uint256 base, uint256 exponent)
+        external
+        pure
+        returns (uint256)
+    {
         uint256 result;
         assembly {
             // 使用exp操作码进行幂运算
